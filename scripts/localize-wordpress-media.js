@@ -47,12 +47,19 @@ function collectMediaUrls(text) {
 async function downloadFile(url, destinationPath) {
   const candidates = buildCandidateUrls(url);
   let lastError = null;
+  const expectedKind = mediaKindFromPath(new URL(url).pathname);
 
   for (const candidate of candidates) {
     try {
       const response = await fetch(candidate, { redirect: "follow" });
       if (!response.ok) {
         lastError = new Error(`HTTP ${response.status} for ${candidate}`);
+        continue;
+      }
+
+      const contentType = (response.headers.get("content-type") || "").toLowerCase();
+      if (!looksLikeExpectedMedia(contentType, expectedKind)) {
+        lastError = new Error(`Unexpected content-type ${contentType || "unknown"} for ${candidate}`);
         continue;
       }
 
@@ -66,6 +73,23 @@ async function downloadFile(url, destinationPath) {
   }
 
   throw lastError || new Error(`Unable to download ${url}`);
+}
+
+function mediaKindFromPath(pathname) {
+  if (/\.(mp4|webm|mov)$/i.test(pathname)) {
+    return "video";
+  }
+  return "image";
+}
+
+function looksLikeExpectedMedia(contentType, expectedKind) {
+  if (!contentType) {
+    return false;
+  }
+  if (expectedKind === "video") {
+    return contentType.startsWith("video/");
+  }
+  return contentType.startsWith("image/");
 }
 
 function buildCandidateUrls(urlString) {
