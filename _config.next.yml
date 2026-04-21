@@ -1,0 +1,91 @@
+custom_file_path:
+  style: source/_data/styles.styl
+
+scheme: Gemini
+darkmode: false
+
+menu:
+  home: / || fa fa-house
+  about: /about/ || fa fa-user
+  categories: /categories/ || fa fa-folder-open
+  archives: /archives/ || fa fa-box-archive
+
+menu_settings:
+  icons: true
+  badges: false
+
+sidebar:
+  position: left
+  display: always
+  padding: 16
+  offset: 18
+
+site_state: true
+
+social:
+  GitHub: https://github.com/xiaoyanblog/blogweb || fab fa-github
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: true
+
+toc:
+  enable: true
+  number: true
+  wrap: true
+  expand_all: false
+  max_depth: 4
+
+footer:
+  since: 2023
+  icon:
+    name: fa fa-sparkles
+    animated: false
+    color: "#cc7a2f"
+  powered: false
+  beian:
+    enable: false
+
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: true
+    another_day: true
+  categories: true
+
+post_navigation: left
+
+codeblock:
+  copy_button:
+    enable: true
+    style: flat
+
+back2top:
+  enable: true
+  sidebar: true
+  scrollpercent: true
+
+reading_progress:
+  enable: true
+  start_at: left
+  position: top
+  reversed: false
+  color: "#cc7a2f"
+  height: 3px
+
+motion:
+  enable: true
+  async: false
+  duration: 240
+
+creative_commons:
+  license: by-nc-sa
+  size: small
+  sidebar: false
+  post: false
+
+avatar:
+  rounded: true
+  rotated: false
