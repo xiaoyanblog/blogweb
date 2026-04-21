@@ -2,6 +2,7 @@
 Thumbs.db
 db.json
 *.log
+.npm-cache/
 node_modules/
 public/
 .deploy*/
